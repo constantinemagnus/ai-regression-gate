@@ -1,0 +1,40 @@
+{
+ "request": {
+  "effort": "medium",
+  "ignore_user_config": true,
+  "model": "gpt-6.2-sol",
+  "prompt": "You are grading one answer from a customer-support bot. Decide whether the bot's answer is correct.\n\nThe bot had to answer only from the documentation passages below. A reference answer written by a person is included.\n\nMark the answer \"correct\" if it states the same facts as the reference answer and contains nothing that contradicts the passages. Extra detail is fine if the passages support it. Wording does not matter.\n\nJudge against what the customer asked and the reference answer. Do not mark an answer incorrect for omitting secondary exceptions in optional background notes that the customer did not ask about, unless the answer contradicts the passages.\n\nMark it \"incorrect\" if it gets a number, condition or conclusion wrong, leaves out the part of the reference that answers the question, states something the passages do not support, or declines to answer when the passages contain the answer.\n\nGive a one-sentence reason.\n\nQuestion:\nDoes scheduled maintenance count as downtime?\n\nDocumentation passages:\n[sla-4] Exclusions\nScheduled maintenance announced at least 72 hours in advance does not count as downtime, up to 4 hours per month. Outages caused by the customer's own systems or by force majeure events are also excluded.\n\n[refunds-5] Outages\nDowntime is compensated with service credits under the service level agreement, not with refunds.\n\n[api-6] Webhooks\nFailed webhook deliveries are retried up to 8 times over 24 hours with exponential backoff. Webhook endpoints must respond within 10 seconds, or the delivery counts as failed.\n\n[api-1] Rate limits\nAPI rate limits apply per workspace: 60 requests per minute on Starter, 600 requests per minute on Team and 3,000 requests per minute on Business.\n\nReference answer:\nNot if it was announced at least 72 hours in advance, up to 4 hours per month.\n\nBot answer:\nNot entirely. Scheduled maintenance announced at least 72 hours in advance does not count as downtime, but only up to 4 hours per month. Any scheduled maintenance beyond that 4-hour monthly allowance would count as downtime.",
+  "provider": "codex-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "verdict",
+    "reason"
+   ],
+   "type": "object"
+  }
+ },
+ "response": {
+  "data": {
+   "reason": "The bot accurately states the 72-hour notice requirement and the four-hour monthly cap on the scheduled maintenance exclusion.",
+   "verdict": "correct"
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "gpt-6.2-sol",
+  "stop_reason": "end_turn",
+  "usage": {}
+ }
+}

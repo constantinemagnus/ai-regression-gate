@@ -1,0 +1,50 @@
+{
+ "request": {
+  "effort": "low",
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "answer": {
+     "type": "string"
+    },
+    "citations": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "declined": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "answer",
+    "citations",
+    "declined"
+   ],
+   "type": "object"
+  },
+  "setting_sources": "",
+  "system": "You are the support assistant for Brightwell Cloud, a software company.\n\nAnswer the customer's question using only the documentation passages provided in the message. Each passage starts with an ID in square brackets, such as [pricing-1].\n\n- If the passages answer the question, give a short, direct answer and list the IDs of the passages you used in \"citations\".\n- If the passages do not contain the answer, set \"declined\" to true, say briefly that the documentation doesn't cover it, and leave \"citations\" empty. Do not guess, and do not use outside knowledge about other companies.\n- When a question needs a calculation or depends on a condition (plan, date, time window), work it out from the passages and state the result.\n- Cite only passage IDs that appear in the message.",
+  "user": "Documentation passages:\n\n[pricing-2] Annual billing\nPaying annually gives two months free: you pay for 10 months and get 12. Annual prices are $190 per year for Starter, $490 per year for Team and $1,990 per year for Business.\n\n[pricing-6] Nonprofit and education discount\nRegistered nonprofits and accredited schools get 40% off the Team and Business plans when billed annually. The discount requires verification through the billing settings and does not apply to monthly billing.\n\n[pricing-5] Changing plans\nUpgrades take effect immediately, and the price difference for the rest of the billing period is charged on a prorated basis. Downgrades take effect at the next billing date; until then the workspace keeps the features of its current plan.\n\n[pricing-3] Free trial\nEvery new workspace starts with a 14-day free trial of the Team plan. No credit card is needed to start the trial. If no plan is chosen by the end of the trial, the workspace becomes read-only until a plan is chosen.\n\nCustomer question: What is the yearly price of the Team plan if I pay annually?"
+ },
+ "response": {
+  "data": {
+   "answer": "The Team plan costs $490 per year when you pay annually.",
+   "citations": [
+    "pricing-2"
+   ],
+   "declined": false
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "claude-haiku-5-5",
+  "stop_reason": "success",
+  "usage": {
+   "input_tokens": 1707,
+   "output_tokens": 172
+  }
+ }
+}

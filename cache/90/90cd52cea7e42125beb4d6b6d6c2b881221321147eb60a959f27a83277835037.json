@@ -1,0 +1,50 @@
+{
+ "request": {
+  "effort": "low",
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "answer": {
+     "type": "string"
+    },
+    "citations": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "declined": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "answer",
+    "citations",
+    "declined"
+   ],
+   "type": "object"
+  },
+  "setting_sources": "",
+  "system": "You are the support assistant for Brightwell Cloud, a software company.\n\nAnswer the customer's question using only the documentation passages provided in the message. Each passage starts with an ID in square brackets, such as [pricing-1].\n\n- If the passages answer the question, give a short, direct answer and list the IDs of the passages you used in \"citations\".\n- If the passages do not contain the answer, set \"declined\" to true, say briefly that the documentation doesn't cover it, and leave \"citations\" empty. Do not guess, and do not use outside knowledge about other companies.\n- When a question needs a calculation or depends on a condition (plan, date, time window), work it out from the passages and state the result.\n- Cite only passage IDs that appear in the message.",
+  "user": "Documentation passages:\n\n[api-6] Webhooks\nFailed webhook deliveries are retried up to 8 times over 24 hours with exponential backoff. Webhook endpoints must respond within 10 seconds, or the delivery counts as failed.\n\n[refunds-1] Monthly plans\nMonthly plans are not refunded for partial months. You can cancel at any time, and the workspace keeps full access until the end of the current billing period.\n\n[sla-5] Support response times\nFor priority-1 incidents, Business customers get a first response within 1 hour, 24 hours a day, 7 days a week. Team customers get a first response to priority-1 incidents within 8 business hours. Starter customers get email support with a first response within 2 business days.\n\n[api-1] Rate limits\nAPI rate limits apply per workspace: 60 requests per minute on Starter, 600 requests per minute on Team and 3,000 requests per minute on Business.\n\nCustomer question: How many times is a failed webhook delivery retried?"
+ },
+ "response": {
+  "data": {
+   "answer": "A failed webhook delivery is retried up to 8 times over 24 hours, using exponential backoff. Endpoints must respond within 10 seconds, or the delivery counts as failed.",
+   "citations": [
+    "api-6"
+   ],
+   "declined": false
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "claude-haiku-5-5",
+  "stop_reason": "success",
+  "usage": {
+   "input_tokens": 1679,
+   "output_tokens": 160
+  }
+ }
+}

@@ -1,0 +1,50 @@
+{
+ "request": {
+  "effort": "low",
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "answer": {
+     "type": "string"
+    },
+    "citations": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "declined": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "answer",
+    "citations",
+    "declined"
+   ],
+   "type": "object"
+  },
+  "setting_sources": "",
+  "system": "You are the support assistant for Brightwell Cloud, a software company.\n\nAnswer the customer's question using only the documentation passages provided in the message. Each passage starts with an ID in square brackets, such as [pricing-1].\n\n- If the passages answer the question, give a short, direct answer and list the IDs of the passages you used in \"citations\".\n- If the passages do not contain the answer, set \"declined\" to true, say briefly that the documentation doesn't cover it, and leave \"citations\" empty. Do not guess, and do not use outside knowledge about other companies.\n- When a question needs a calculation or depends on a condition (plan, date, time window), work it out from the passages and state the result.\n- Cite only passage IDs that appear in the message.",
+  "user": "Documentation passages:\n\n[refunds-3] How to request a refund\nA billing admin requests a refund from Settings > Billing > Request refund. Approved refunds are paid back to the original payment method within 5–10 business days.\n\n[api-1] Rate limits\nAPI rate limits apply per workspace: 60 requests per minute on Starter, 600 requests per minute on Team and 3,000 requests per minute on Business.\n\n[refunds-5] Outages\nDowntime is compensated with service credits under the service level agreement, not with refunds.\n\n[refunds-2] Annual plans\nA new annual plan can be refunded in full if the refund is requested within 30 days of the first annual payment. Annual renewals are different: a renewal can be refunded only if the refund is requested within 7 days of the renewal date. After those windows, annual plans are not refunded, but you can switch to monthly billing at the next renewal.\n\nCustomer question: How do I request a refund?"
+ },
+ "response": {
+  "data": {
+   "answer": "A billing admin can request a refund from Settings > Billing > Request refund. Approved refunds are paid back to the original payment method within 5–10 business days.",
+   "citations": [
+    "refunds-3"
+   ],
+   "declined": false
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "claude-haiku-5-5",
+  "stop_reason": "success",
+  "usage": {
+   "input_tokens": 1661,
+   "output_tokens": 151
+  }
+ }
+}

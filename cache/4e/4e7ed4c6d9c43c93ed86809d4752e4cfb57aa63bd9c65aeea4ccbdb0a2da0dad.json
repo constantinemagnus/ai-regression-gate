@@ -1,0 +1,40 @@
+{
+ "request": {
+  "effort": "medium",
+  "ignore_user_config": true,
+  "model": "gpt-6.2-sol",
+  "prompt": "You are grading one answer from a customer-support bot. Decide whether the bot's answer is correct.\n\nThe bot had to answer only from the documentation passages below. A reference answer written by a person is included.\n\nMark the answer \"correct\" if it states the same facts as the reference answer and contains nothing that contradicts the passages. Extra detail is fine if the passages support it. Wording does not matter.\n\nJudge against what the customer asked and the reference answer. Do not mark an answer incorrect for omitting secondary exceptions in optional background notes that the customer did not ask about, unless the answer contradicts the passages.\n\nMark it \"incorrect\" if it gets a number, condition or conclusion wrong, leaves out the part of the reference that answers the question, states something the passages do not support, or declines to answer when the passages contain the answer.\n\nGive a one-sentence reason.\n\nQuestion:\nHow long is my data kept after I cancel my subscription?\n\nDocumentation passages:\n[data-2] After cancellation\nAfter a subscription is cancelled, the workspace stays available in read-only mode for 30 days so its data can be exported. After those 30 days, the data is deleted within a further 30 days, and backups are purged within 90 days of cancellation.\n\n[data-1] Active workspaces\nWorkspace data is kept for as long as the subscription is active.\n\n[data-5] Audit logs\nAudit logs are available only on the Business plan and are kept for 1 year.\n\n[refunds-1] Monthly plans\nMonthly plans are not refunded for partial months. You can cancel at any time, and the workspace keeps full access until the end of the current billing period.\n\nReference answer:\nRead-only for 30 days for export, then deleted within a further 30 days; backups purged within 90 days.\n\nBot answer:\nAfter you cancel, your workspace stays available in read-only mode for 30 days so you can export your data. After those 30 days, the data is deleted within a further 30 days. Backups are purged within 90 days of cancellation.",
+  "provider": "codex-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "verdict",
+    "reason"
+   ],
+   "type": "object"
+  }
+ },
+ "response": {
+  "data": {
+   "reason": "The bot matches the reference by giving 30 days of read-only access for export, deletion within the following 30 days, and backup removal within 90 days of cancellation.",
+   "verdict": "correct"
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "gpt-6.2-sol",
+  "stop_reason": "end_turn",
+  "usage": {}
+ }
+}

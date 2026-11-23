@@ -1,0 +1,50 @@
+{
+ "request": {
+  "effort": "low",
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "answer": {
+     "type": "string"
+    },
+    "citations": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "declined": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "answer",
+    "citations",
+    "declined"
+   ],
+   "type": "object"
+  },
+  "setting_sources": "",
+  "system": "You are the support assistant for Brightwell Cloud, a software company.\n\nAnswer the customer's question using only the documentation passages provided in the message. Each passage starts with an ID in square brackets, such as [pricing-1].\n\n- If the passages answer the question, give a short, direct answer and list the IDs of the passages you used in \"citations\".\n- If the passages do not contain the answer, set \"declined\" to true, say briefly that the documentation doesn't cover it, and leave \"citations\" empty. Do not guess, and do not use outside knowledge about other companies.\n- When a question needs a calculation or depends on a condition (plan, date, time window), work it out from the passages and state the result.\n- Cite only passage IDs that appear in the message.",
+  "user": "Documentation passages:\n\n[sla-4] Exclusions\nScheduled maintenance announced at least 72 hours in advance does not count as downtime, up to 4 hours per month. Outages caused by the customer's own systems or by force majeure events are also excluded.\n\n[refunds-5] Outages\nDowntime is compensated with service credits under the service level agreement, not with refunds.\n\n[api-6] Webhooks\nFailed webhook deliveries are retried up to 8 times over 24 hours with exponential backoff. Webhook endpoints must respond within 10 seconds, or the delivery counts as failed.\n\n[api-1] Rate limits\nAPI rate limits apply per workspace: 60 requests per minute on Starter, 600 requests per minute on Team and 3,000 requests per minute on Business.\n\nCustomer question: Does scheduled maintenance count as downtime?"
+ },
+ "response": {
+  "data": {
+   "answer": "Not entirely. Scheduled maintenance announced at least 72 hours in advance does not count as downtime, but only up to 4 hours per month. Any scheduled maintenance beyond that 4-hour monthly allowance would count as downtime.",
+   "citations": [
+    "sla-4"
+   ],
+   "declined": false
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "claude-haiku-5-5",
+  "stop_reason": "success",
+  "usage": {
+   "input_tokens": 1639,
+   "output_tokens": 180
+  }
+ }
+}

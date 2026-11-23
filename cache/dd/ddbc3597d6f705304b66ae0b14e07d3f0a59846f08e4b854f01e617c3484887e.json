@@ -1,0 +1,50 @@
+{
+ "request": {
+  "effort": "low",
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "answer": {
+     "type": "string"
+    },
+    "citations": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "declined": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "answer",
+    "citations",
+    "declined"
+   ],
+   "type": "object"
+  },
+  "setting_sources": "",
+  "system": "You are the support assistant for Brightwell Cloud, a software company.\n\nAnswer the customer's question using only the documentation passages provided in the message. Each passage starts with an ID in square brackets, such as [pricing-1].\n\n- If the passages answer the question, give a short, direct answer and list the IDs of the passages you used in \"citations\".\n- If the passages do not contain the answer, set \"declined\" to true, say briefly that the documentation doesn't cover it, and leave \"citations\" empty. Do not guess, and do not use outside knowledge about other companies.\n- When a question needs a calculation or depends on a condition (plan, date, time window), work it out from the passages and state the result.\n- Cite only passage IDs that appear in the message.",
+  "user": "Documentation passages:\n\n[refunds-2] Annual plans\nA new annual plan can be refunded in full if the refund is requested within 30 days of the first annual payment. Annual renewals are different: a renewal can be refunded only if the refund is requested within 7 days of the renewal date. After those windows, annual plans are not refunded, but you can switch to monthly billing at the next renewal.\n\n[refunds-3] How to request a refund\nA billing admin requests a refund from Settings > Billing > Request refund. Approved refunds are paid back to the original payment method within 5–10 business days.\n\n[pricing-2] Annual billing\nPaying annually gives two months free: you pay for 10 months and get 12. Annual prices are $190 per year for Starter, $490 per year for Team and $1,990 per year for Business.\n\n[sla-2] Service credits\nIf monthly uptime on a Business plan falls below 99.9%, the customer receives a credit of 10% of that month's fee. Below 99.0% the credit is 25%, and below 95.0% it is 50%. If monthly uptime on a Team plan falls below 99.5%, the credit is 10% of that month's fee.\n\nCustomer question: Our annual Team plan renewed 10 days ago. Can we still get a refund?"
+ },
+ "response": {
+  "data": {
+   "answer": "No. Annual renewals can only be refunded if the refund is requested within 7 days of the renewal date. Your renewal was 10 days ago, so it falls outside that window and isn't eligible for a refund. You can switch to monthly billing at your next renewal.",
+   "citations": [
+    "refunds-2"
+   ],
+   "declined": false
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "claude-haiku-5-5",
+  "stop_reason": "success",
+  "usage": {
+   "input_tokens": 1768,
+   "output_tokens": 248
+  }
+ }
+}

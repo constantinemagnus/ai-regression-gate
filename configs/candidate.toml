@@ -1,0 +1,18 @@
+# Candidate: the proposed change. Here, a much cheaper model.
+name = "candidate"
+
+[bot]
+provider = "claude-cli"
+model = "claude-haiku-5-5"
+effort = "low"
+# Claude Haiku 5.5 has no server-side refusal fallback.
+fallbacks = ""
+max_tokens = 4000
+
+[judge]
+provider = "codex-cli"
+model = "gpt-6.2-sol"
+effort = "medium"
+
+[retrieval]
+top_k = 4

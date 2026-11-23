@@ -1,0 +1,40 @@
+{
+ "request": {
+  "effort": "medium",
+  "ignore_user_config": true,
+  "model": "gpt-6.2-sol",
+  "prompt": "You are grading one answer from a customer-support bot. Decide whether the bot's answer is correct.\n\nThe bot had to answer only from the documentation passages below. A reference answer written by a person is included.\n\nMark the answer \"correct\" if it states the same facts as the reference answer and contains nothing that contradicts the passages. Extra detail is fine if the passages support it. Wording does not matter.\n\nJudge against what the customer asked and the reference answer. Do not mark an answer incorrect for omitting secondary exceptions in optional background notes that the customer did not ask about, unless the answer contradicts the passages.\n\nMark it \"incorrect\" if it gets a number, condition or conclusion wrong, leaves out the part of the reference that answers the question, states something the passages do not support, or declines to answer when the passages contain the answer.\n\nGive a one-sentence reason.\n\nQuestion:\nHow much does the Team plan cost per month?\n\nDocumentation passages:\n[pricing-1] Plans and seats\nBrightwell Cloud has three plans, billed per workspace. Starter costs $19 per month and allows up to 3 users. Team costs $49 per month and includes 10 users; each additional user on Team costs $6 per user per month. Business costs $199 per month and includes 25 users, single sign-on (SSO) and the audit log.\n\n[pricing-2] Annual billing\nPaying annually gives two months free: you pay for 10 months and get 12. Annual prices are $190 per year for Starter, $490 per year for Team and $1,990 per year for Business.\n\n[sla-2] Service credits\nIf monthly uptime on a Business plan falls below 99.9%, the customer receives a credit of 10% of that month's fee. Below 99.0% the credit is 25%, and below 95.0% it is 50%. If monthly uptime on a Team plan falls below 99.5%, the credit is 10% of that month's fee.\n\n[api-1] Rate limits\nAPI rate limits apply per workspace: 60 requests per minute on Starter, 600 requests per minute on Team and 3,000 requests per minute on Business.\n\nReference answer:\n$49 per month, including 10 users.\n\nBot answer:\nThe Team plan costs $49 per month per workspace. It includes 10 users, and each additional user costs $6 per user per month. If you pay annually instead, the Team plan is $490 per year.",
+  "provider": "codex-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "verdict",
+    "reason"
+   ],
+   "type": "object"
+  }
+ },
+ "response": {
+  "data": {
+   "reason": "The answer gives the documented price of $49 per workspace per month with 10 users included, and the extra-user and annual prices also match the passages.",
+   "verdict": "correct"
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "gpt-6.2-sol",
+  "stop_reason": "end_turn",
+  "usage": {}
+ }
+}

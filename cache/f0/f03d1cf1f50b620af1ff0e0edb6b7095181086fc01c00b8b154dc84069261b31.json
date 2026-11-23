@@ -1,0 +1,40 @@
+{
+ "request": {
+  "effort": "medium",
+  "ignore_user_config": true,
+  "model": "gpt-6.2-sol",
+  "prompt": "You are grading one answer from a customer-support bot. Decide whether the bot's answer is correct.\n\nThe bot had to answer only from the documentation passages below. A reference answer written by a person is included.\n\nMark the answer \"correct\" if it states the same facts as the reference answer and contains nothing that contradicts the passages. Extra detail is fine if the passages support it. Wording does not matter.\n\nJudge against what the customer asked and the reference answer. Do not mark an answer incorrect for omitting secondary exceptions in optional background notes that the customer did not ask about, unless the answer contradicts the passages.\n\nMark it \"incorrect\" if it gets a number, condition or conclusion wrong, leaves out the part of the reference that answers the question, states something the passages do not support, or declines to answer when the passages contain the answer.\n\nGive a one-sentence reason.\n\nQuestion:\nWe have 14 users on the Team plan. What is our monthly bill before tax?\n\nDocumentation passages:\n[pricing-1] Plans and seats\nBrightwell Cloud has three plans, billed per workspace. Starter costs $19 per month and allows up to 3 users. Team costs $49 per month and includes 10 users; each additional user on Team costs $6 per user per month. Business costs $199 per month and includes 25 users, single sign-on (SSO) and the audit log.\n\n[pricing-3] Free trial\nEvery new workspace starts with a 14-day free trial of the Team plan. No credit card is needed to start the trial. If no plan is chosen by the end of the trial, the workspace becomes read-only until a plan is chosen.\n\n[sla-1] Uptime commitment\nBusiness plans are covered by a 99.9% monthly uptime commitment and Team plans by a 99.5% monthly uptime commitment. Starter plans have no uptime commitment, are not covered by the service level agreement and are not eligible for service credits after an outage.\n\n[pricing-4] Taxes\nPrices do not include VAT or sales tax. Tax is added at checkout based on the billing address. EU business customers who provide a valid VAT ID are invoiced under the reverse-charge rule.\n\nReference answer:\n$73 per month: $49 for the first 10 users plus 4 extra users at $6 each.\n\nBot answer:\nYour monthly bill before tax is $73. The Team plan costs $49 per month and includes 10 users. Your 4 extra users cost $6 each per month, which adds $24. So the total is $49 + $24 = $73. VAT or sales tax is added at checkout based on your billing address.",
+  "provider": "codex-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "verdict",
+    "reason"
+   ],
+   "type": "object"
+  }
+ },
+ "response": {
+  "data": {
+   "reason": "The bot correctly calculates the $73 monthly pre-tax bill from the $49 Team plan and four additional users at $6 each, and its tax note matches the documentation.",
+   "verdict": "correct"
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "gpt-6.2-sol",
+  "stop_reason": "end_turn",
+  "usage": {}
+ }
+}

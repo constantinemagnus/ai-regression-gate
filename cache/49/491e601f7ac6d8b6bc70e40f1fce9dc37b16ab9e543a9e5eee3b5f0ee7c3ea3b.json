@@ -1,0 +1,40 @@
+{
+ "request": {
+  "effort": "medium",
+  "ignore_user_config": true,
+  "model": "gpt-6.2-sol",
+  "prompt": "You are grading one answer from a customer-support bot. Decide whether the bot's answer is correct.\n\nThe bot had to answer only from the documentation passages below. A reference answer written by a person is included.\n\nMark the answer \"correct\" if it states the same facts as the reference answer and contains nothing that contradicts the passages. Extra detail is fine if the passages support it. Wording does not matter.\n\nJudge against what the customer asked and the reference answer. Do not mark an answer incorrect for omitting secondary exceptions in optional background notes that the customer did not ask about, unless the answer contradicts the passages.\n\nMark it \"incorrect\" if it gets a number, condition or conclusion wrong, leaves out the part of the reference that answers the question, states something the passages do not support, or declines to answer when the passages contain the answer.\n\nGive a one-sentence reason.\n\nQuestion:\nHow long do I have to ask for a refund on a newly purchased annual plan?\n\nDocumentation passages:\n[refunds-2] Annual plans\nA new annual plan can be refunded in full if the refund is requested within 30 days of the first annual payment. Annual renewals are different: a renewal can be refunded only if the refund is requested within 7 days of the renewal date. After those windows, annual plans are not refunded, but you can switch to monthly billing at the next renewal.\n\n[data-1] Active workspaces\nWorkspace data is kept for as long as the subscription is active.\n\n[refunds-3] How to request a refund\nA billing admin requests a refund from Settings > Billing > Request refund. Approved refunds are paid back to the original payment method within 5–10 business days.\n\n[pricing-2] Annual billing\nPaying annually gives two months free: you pay for 10 months and get 12. Annual prices are $190 per year for Starter, $490 per year for Team and $1,990 per year for Business.\n\nReference answer:\n30 days from the first annual payment.\n\nBot answer:\nYou have 30 days from the first annual payment to request a full refund on a newly purchased annual plan. After that window, the annual plan is not refunded, but you can switch to monthly billing at the next renewal. (Refund requests are made by a billing admin under Settings > Billing > Request refund.)",
+  "provider": "codex-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "verdict",
+    "reason"
+   ],
+   "type": "object"
+  }
+ },
+ "response": {
+  "data": {
+   "reason": "The bot gives the correct 30-day deadline from the first annual payment, and the documentation supports the additional details.",
+   "verdict": "correct"
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "gpt-6.2-sol",
+  "stop_reason": "end_turn",
+  "usage": {}
+ }
+}

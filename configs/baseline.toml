@@ -1,0 +1,26 @@
+# Baseline: the configuration currently in production.
+name = "baseline"
+
+[bot]
+# "claude-cli" runs `claude -p` on your Claude subscription (no API key needed).
+# "anthropic" calls the Claude API with the Anthropic SDK (needs ANTHROPIC_API_KEY
+# or an `ant auth login` profile).
+provider = "claude-cli"
+model = "claude-opus-5-5"
+effort = "low"
+# Server-side refusal fallback for models that support it. Results record when a
+# fallback model answered instead, so a run never silently mixes models.
+fallbacks = "default"
+max_tokens = 4000
+
+[judge]
+# The judge should come from a different model family than the bot.
+# "codex-cli" runs `codex exec --ignore-user-config` on your ChatGPT/Codex login.
+# Pin an explicit model so cache keys stay reproducible across machines/config updates.
+# "anthropic" also works but is flagged as same-family in the report.
+provider = "codex-cli"
+model = "gpt-6.2-sol"
+effort = "medium"
+
+[retrieval]
+top_k = 4

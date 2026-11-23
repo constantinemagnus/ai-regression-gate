@@ -1,0 +1,51 @@
+{
+ "request": {
+  "effort": "low",
+  "model": "claude-haiku-5-5",
+  "provider": "claude-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "answer": {
+     "type": "string"
+    },
+    "citations": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "declined": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "answer",
+    "citations",
+    "declined"
+   ],
+   "type": "object"
+  },
+  "setting_sources": "",
+  "system": "You are the support assistant for Brightwell Cloud, a software company.\n\nAnswer the customer's question using only the documentation passages provided in the message. Each passage starts with an ID in square brackets, such as [pricing-1].\n\n- If the passages answer the question, give a short, direct answer and list the IDs of the passages you used in \"citations\".\n- If the passages do not contain the answer, set \"declined\" to true, say briefly that the documentation doesn't cover it, and leave \"citations\" empty. Do not guess, and do not use outside knowledge about other companies.\n- When a question needs a calculation or depends on a condition (plan, date, time window), work it out from the passages and state the result.\n- Cite only passage IDs that appear in the message.",
+  "user": "Documentation passages:\n\n[sla-1] Uptime commitment\nBusiness plans are covered by a 99.9% monthly uptime commitment and Team plans by a 99.5% monthly uptime commitment. Starter plans have no uptime commitment, are not covered by the service level agreement and are not eligible for service credits after an outage.\n\n[sla-2] Service credits\nIf monthly uptime on a Business plan falls below 99.9%, the customer receives a credit of 10% of that month's fee. Below 99.0% the credit is 25%, and below 95.0% it is 50%. If monthly uptime on a Team plan falls below 99.5%, the credit is 10% of that month's fee.\n\n[data-3] Data export\nCSV and JSON exports are available on every plan. Business plans can also schedule automatic exports to an Amazon S3 bucket.\n\n[data-5] Audit logs\nAudit logs are available only on the Business plan and are kept for 1 year.\n\nCustomer question: What uptime does the Business plan guarantee?"
+ },
+ "response": {
+  "data": {
+   "answer": "The Business plan guarantees a 99.9% monthly uptime commitment. If monthly uptime falls below that, service credits apply (10% of the month's fee below 99.9%, 25% below 99.0%, and 50% below 95.0%).",
+   "citations": [
+    "sla-1",
+    "sla-2"
+   ],
+   "declined": false
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "claude-haiku-5-5",
+  "stop_reason": "success",
+  "usage": {
+   "input_tokens": 1691,
+   "output_tokens": 186
+  }
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "request": {
+  "effort": "medium",
+  "ignore_user_config": true,
+  "model": "gpt-6.2-sol",
+  "prompt": "You are grading one answer from a customer-support bot. Decide whether the bot's answer is correct.\n\nThe bot had to answer only from the documentation passages below. A reference answer written by a person is included.\n\nMark the answer \"correct\" if it states the same facts as the reference answer and contains nothing that contradicts the passages. Extra detail is fine if the passages support it. Wording does not matter.\n\nJudge against what the customer asked and the reference answer. Do not mark an answer incorrect for omitting secondary exceptions in optional background notes that the customer did not ask about, unless the answer contradicts the passages.\n\nMark it \"incorrect\" if it gets a number, condition or conclusion wrong, leaves out the part of the reference that answers the question, states something the passages do not support, or declines to answer when the passages contain the answer.\n\nGive a one-sentence reason.\n\nQuestion:\nWhat does each additional user cost on the Team plan?\n\nDocumentation passages:\n[pricing-1] Plans and seats\nBrightwell Cloud has three plans, billed per workspace. Starter costs $19 per month and allows up to 3 users. Team costs $49 per month and includes 10 users; each additional user on Team costs $6 per user per month. Business costs $199 per month and includes 25 users, single sign-on (SSO) and the audit log.\n\n[api-4] Monthly API quotas\nEach plan includes a monthly quota of API calls: 100,000 calls on Starter, 2,000,000 on Team and 20,000,000 on Business. Calls beyond the quota are billed as an add-on at $1 per 10,000 calls.\n\n[pricing-3] Free trial\nEvery new workspace starts with a 14-day free trial of the Team plan. No credit card is needed to start the trial. If no plan is chosen by the end of the trial, the workspace becomes read-only until a plan is chosen.\n\n[sla-1] Uptime commitment\nBusiness plans are covered by a 99.9% monthly uptime commitment and Team plans by a 99.5% monthly uptime commitment. Starter plans have no uptime commitment, are not covered by the service level agreement and are not eligible for service credits after an outage.\n\nReference answer:\n$6 per user per month.\n\nBot answer:\nEach additional user on the Team plan costs $6 per user per month (Team includes 10 users at $49/month).",
+  "provider": "codex-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "verdict",
+    "reason"
+   ],
+   "type": "object"
+  }
+ },
+ "response": {
+  "data": {
+   "reason": "The bot gives the correct rate of $6 per additional user per month, and the documentation confirms that the $49 monthly Team plan includes 10 users.",
+   "verdict": "correct"
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "gpt-6.2-sol",
+  "stop_reason": "end_turn",
+  "usage": {}
+ }
+}

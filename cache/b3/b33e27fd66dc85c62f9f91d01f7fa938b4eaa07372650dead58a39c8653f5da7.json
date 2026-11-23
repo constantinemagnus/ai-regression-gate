@@ -1,0 +1,40 @@
+{
+ "request": {
+  "effort": "medium",
+  "ignore_user_config": true,
+  "model": "gpt-6.2-sol",
+  "prompt": "You are grading one answer from a customer-support bot. Decide whether the bot's answer is correct.\n\nThe bot had to answer only from the documentation passages below. A reference answer written by a person is included.\n\nMark the answer \"correct\" if it states the same facts as the reference answer and contains nothing that contradicts the passages. Extra detail is fine if the passages support it. Wording does not matter.\n\nJudge against what the customer asked and the reference answer. Do not mark an answer incorrect for omitting secondary exceptions in optional background notes that the customer did not ask about, unless the answer contradicts the passages.\n\nMark it \"incorrect\" if it gets a number, condition or conclusion wrong, leaves out the part of the reference that answers the question, states something the passages do not support, or declines to answer when the passages contain the answer.\n\nGive a one-sentence reason.\n\nQuestion:\nWhat happens if I go over the API rate limit?\n\nDocumentation passages:\n[api-3] Exceeding the rate limit\nRequests over the rate limit receive HTTP status 429 with a Retry-After header that gives the number of seconds to wait before retrying.\n\n[api-1] Rate limits\nAPI rate limits apply per workspace: 60 requests per minute on Starter, 600 requests per minute on Team and 3,000 requests per minute on Business.\n\n[api-2] Bursts\nShort bursts of up to twice the per-minute rate limit are allowed for up to 10 seconds.\n\n[api-4] Monthly API quotas\nEach plan includes a monthly quota of API calls: 100,000 calls on Starter, 2,000,000 on Team and 20,000,000 on Business. Calls beyond the quota are billed as an add-on at $1 per 10,000 calls.\n\nReference answer:\nThe request gets HTTP 429 with a Retry-After header in seconds.\n\nBot answer:\nIf you exceed the API rate limit, requests over the limit receive HTTP status 429. The response includes a Retry-After header giving the number of seconds to wait before retrying. Note that short bursts of up to twice your per-minute rate limit are allowed for up to 10 seconds.",
+  "provider": "codex-cli",
+  "schema": {
+   "additionalProperties": false,
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "verdict",
+    "reason"
+   ],
+   "type": "object"
+  }
+ },
+ "response": {
+  "data": {
+   "reason": "The answer correctly states that over-limit requests receive HTTP 429 with a Retry-After header specifying the wait in seconds, and the documentation supports the added burst detail.",
+   "verdict": "correct"
+  },
+  "fallback_ran": false,
+  "refused": false,
+  "served_model": "gpt-6.2-sol",
+  "stop_reason": "end_turn",
+  "usage": {}
+ }
+}

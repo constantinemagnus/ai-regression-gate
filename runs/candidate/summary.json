@@ -1,0 +1,42 @@
+{
+  "bot": {
+    "effort": "low",
+    "fallbacks": "",
+    "max_tokens": 4000,
+    "model": "claude-haiku-5-5",
+    "provider": "claude-cli"
+  },
+  "by_kind": {
+    "answerable": {
+      "passed": 25,
+      "total": 25
+    },
+    "tricky": {
+      "passed": 4,
+      "total": 5
+    },
+    "unanswerable": {
+      "passed": 9,
+      "total": 10
+    }
+  },
+  "errors": 0,
+  "failure_tags": {
+    "cited while declining": 1,
+    "judge: incorrect": 1
+  },
+  "fallback_answers": 0,
+  "judge": {
+    "effort": "medium",
+    "model": "gpt-6.2-sol",
+    "provider": "codex-cli"
+  },
+  "judge_same_family": false,
+  "name": "candidate",
+  "passed": 38,
+  "total": 40,
+  "usage": {
+    "input_tokens": 67602,
+    "output_tokens": 7533
+  }
+}
