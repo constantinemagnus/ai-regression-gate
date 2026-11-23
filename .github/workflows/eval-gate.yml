@@ -19,15 +19,14 @@ jobs:
       # Replays the committed model responses: no API keys, no cost, same result every time.
       # A change to a prompt, model or document has no cached response, so the replay fails
       # and asks for a live run instead of guessing.
-      # Note: once the first live cache is committed, remove the `hashFiles` guard below so
-      # a PR cannot bypass the gate by deleting `cache/`.
+      # No guard on cache/: deleting the cache makes the replay fail, so a PR can't skip the gate.
       - name: Replay baseline and candidate
-        if: github.event_name == 'pull_request' && hashFiles('cache/**/*.json') != ''
+        if: github.event_name == 'pull_request'
         run: |
           python -m evalgate run --config configs/baseline.toml --offline
           python -m evalgate run --config configs/candidate.toml --offline
       - name: Regression gate
-        if: github.event_name == 'pull_request' && hashFiles('cache/**/*.json') != ''
+        if: github.event_name == 'pull_request'
         run: python -m evalgate compare runs/baseline runs/candidate --max-regressions 0
       - name: Judge calibration gate
         if: github.event_name == 'pull_request' && hashFiles('labels/baseline+candidate.jsonl') != ''
