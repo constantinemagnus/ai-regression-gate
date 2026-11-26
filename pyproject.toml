@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Catch silent quality regressions in a retrieval-based support bot before they ship."
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
 dependencies = ["anthropic"]
 
 [project.optional-dependencies]
